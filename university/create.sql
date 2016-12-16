@@ -137,10 +137,10 @@ create or replace type body office_T as
 member procedure show_office is
 cursor c_office is
 select s.pers_surname, b.off_no, b.off_phone
-from person p, build b, office o, staff s
+from build b, office o, staff s
 where b.bld_id = self.bld_id and b.bld_id =
 o.bld_id
-and p.pers_id = s.pers_id and s.in_office = ref
+and s.in_office = ref
 (o);
 begin
 dbms_output.put_line
