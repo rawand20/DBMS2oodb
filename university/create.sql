@@ -47,6 +47,20 @@ cluster build_cluster(bld_id);
 
 --classroom
 
+CREATE OR REPLACE TYPE Classroom_T AS OBJECT
+(bld_id VARCHAR2(10),
+class_no VARCHAR2(10),
+class_capacity NUMBER)
+/
+
+CREATE TABLE Classroom OF Classroom_T
+(bld_id NOT NULL,
+class_no NOT NULL,
+PRIMARY KEY (bld_id, class_no),
+FOREIGN KEY (bld_id) REFERENCES
+Building(bld_id))
+CLUSTER Building_Cluster(bld_id);
+
 --lab
 
 --degree
@@ -133,6 +147,25 @@ END;
 --admin
 
 --technician
+
+CREATE OR REPLACE TYPE Technician_T UNDER Staff_T
+(tech_title VARCHAR2(10),
+tech_skills VARCHAR2(50),
+MEMBER PROCEDURE insert_technician(
+new_pers_id IN VARCHAR2,
+new_pers_surname IN VARCHAR2,
+new_pers_fname IN VARCHAR2,
+new_pers_title IN VARCHAR2,
+new_pers_address IN VARCHAR2,
+new_pers_phone IN VARCHAR2,
+new_pers_postcode IN NUMBER,
+new_campus_location IN VARCHAR2,
+new_bld_id IN VARCHAR2,
+new_off_no IN VARCHAR2,
+new_tech_title IN VARCHAR2,
+new_tech_skills IN VARCHAR2),
+MEMBER PROCEDURE delete_technician)
+/
 
 --lecturer
 
