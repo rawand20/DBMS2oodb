@@ -11,14 +11,14 @@ create or replace campus_t  as object();
 --research-center
 
 --faculty
-create or replace Faculty_T as object (
+create or replace type Faculty_T as object (
 fac_id varchar2(20),
 fac_name varchar2(20),
 fac_dean varchar2(20),
 school School_Table_T,
 department Department_Table_T,
 research_center Research_Center_T,
-member procedure shoe_parts); /
+member procedure show_parts); /
 create table Faculty of Faculty_T (
 fac_id primary key)
 Nested table school store as school_tab
